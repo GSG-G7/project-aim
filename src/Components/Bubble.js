@@ -1,7 +1,5 @@
-import React, { Component } from "react";
+import React from "react";
 import "./Bubble.css";
-export default class extends Component {
-  render() {
-    return <div className="bubble"></div>;
-  }
-}
+export default ({ className, onClick }) => (
+  <div className={className} onClick={onClick}></div>
+);
