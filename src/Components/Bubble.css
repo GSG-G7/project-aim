@@ -5,9 +5,11 @@
   -webkit-border-radius: 25px;
   -moz-border-radius: 25px;
   border-radius: 25px;
+}
+.bubble--inactive {
   background: linear-gradient(red, rgb(151, 16, 16));
 }
-.bubble:active {
+.bubble--active {
   background: linear-gradient(yellow, rgb(179, 179, 28));
 }
 .canvas {

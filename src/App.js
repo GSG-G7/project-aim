@@ -22,7 +22,15 @@ class App extends React.Component {
     return (
       <div className="App">
         <header></header>
-        <section>
+        <section
+          style={{
+            width: "100%",
+            textAlign: "center",
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center"
+          }}
+        >
           {home ? (
             <>
               <div className="tab" id={"aim"} onClick={this.handleTabChange}>
