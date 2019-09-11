@@ -17,11 +17,9 @@ export default class ReflexGame extends Component {
   t = null;
 
   cloneAddCurrentTime = (key, goodClick = true) => {
-    console.log(Date.now());
     const { stage, record } = this.state;
     const newRecord = record.map(ele => ({ ...ele }));
     newRecord[stage][key] = goodClick ? Date.now() : 0;
-    console.log(key, newRecord);
     return newRecord;
   };
 
@@ -34,7 +32,6 @@ export default class ReflexGame extends Component {
       bubbleHide: false,
       record: newRecord
     });
-    console.log(this.getRandomTime());
     this.showActiveBubble(this.getRandomTime());
   };
   showActiveBubble = delay => {
@@ -67,14 +64,12 @@ export default class ReflexGame extends Component {
     this.showInactiveBubble();
   };
   endGame = () => {
-    console.log("end", initStateRecord);
     clearTimeout(this.t);
     // save record in local storage ...
     this.setState({ start: false });
   };
   render() {
     const { bubbleActive, bubbleHide, start, record, stage } = this.state;
-    console.log("state", record);
     return (
       <>
         in
