@@ -1,0 +1,21 @@
+.bubble {
+  width: 50px;
+  height: 50px;
+  /* margin: auto; */
+  -webkit-border-radius: 25px;
+  -moz-border-radius: 25px;
+  border-radius: 25px;
+  background: linear-gradient(red, rgb(151, 16, 16));
+}
+.bubble:active {
+  background: linear-gradient(yellow, rgb(179, 179, 28));
+}
+.canvas {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 75vh;
+  width: 75vh;
+  justify-content: center;
+  border: 2px solid black;
+}
