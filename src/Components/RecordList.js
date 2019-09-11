@@ -1,5 +1,5 @@
 import React from "react";
-
+import "./RecordList.css";
 export default ({ record, stage }) => {
   const formattedRec = {
     arr: record.map(({ activated, clicked }, index) =>
@@ -11,18 +11,16 @@ export default ({ record, stage }) => {
     0
   );
   return (
-    <table class="tg">
-      <p>
-        Average:{" "}
-        {formattedRec.average / stage
-          ? Math.floor(formattedRec.average / stage)
-          : 0}
-      </p>
+    <div className="list">
+      {"Average: "}
+      {formattedRec.average / stage
+        ? Math.floor(formattedRec.average / stage)
+        : 0}
       {formattedRec.arr.map((e, i) => (
-        <tr key={i}>
-          <td className="data">{e}</td>
-        </tr>
+        <h5 className="data" key={i}>
+          {e}
+        </h5>
       ))}
-    </table>
+    </div>
   );
 };

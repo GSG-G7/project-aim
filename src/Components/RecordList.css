@@ -1,0 +1,12 @@
+.list {
+  width: 30%;
+}
+.reflex__canvas {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 75vh;
+  width: 75vh;
+  justify-content: center;
+  border: 2px solid black;
+}

@@ -72,13 +72,12 @@ export default class ReflexGame extends Component {
     const { bubbleActive, bubbleHide, start, record, stage } = this.state;
     return (
       <>
-        in
         <h1 onClick={start ? this.endGame : this.startGame}>
           {start ? "End" : "Start"}{" "}
         </h1>
         <div style={{ display: "flex" }}>
           <RecordList record={record} stage={stage} />
-          <div className="canvas">
+          <div className="reflex__canvas">
             {start ? (
               <Bubble
                 className={
