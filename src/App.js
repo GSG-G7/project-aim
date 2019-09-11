@@ -1,26 +1,62 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import ReflexGame from "./Components/ReflexGame";
+import AimGame from "./Components/AimGame";
+import "./App.css";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends React.Component {
+  state = {
+    tab: { aim: false, reflex: false, home: true }
+  };
+  handleTabChange = ({ target: { id } }) =>
+    this.setState({
+      tab: {
+        aim: id === "aim",
+        reflex: id === "reflex",
+        home: id === "home"
+      }
+    });
+  render() {
+    const {
+      tab: { home, reflex, aim }
+    } = this.state;
+    return (
+      <div className="App">
+        <header></header>
+        <section>
+          {home ? (
+            <>
+              <div className="tab" id={"aim"} onClick={this.handleTabChange}>
+                <img
+                  src={"/"}
+                  alt={"aim game"}
+                  id={"aim"}
+                  onClick={this.handleTabChange}
+                ></img>
+              </div>
+              <div className="tab" id={"reflex"} onClick={this.handleTabChange}>
+                <img
+                  src={"/"}
+                  alt={"reflex game"}
+                  id={"reflex"}
+                  onClick={this.handleTabChange}
+                ></img>
+              </div>
+            </>
+          ) : (
+            <div
+              className="home-tab"
+              id={"home"}
+              onClick={this.handleTabChange}
+            >
+              back{" "}
+            </div>
+          )}
+          {reflex ? <ReflexGame /> : ""}
+          {aim ? <AimGame /> : ""}
+        </section>
+      </div>
+    );
+  }
 }
 
 export default App;
