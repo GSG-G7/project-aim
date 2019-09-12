@@ -55,9 +55,7 @@ export default class ReflexGame extends Component {
   };
   hideBubble = () => {
     this.setState({ bubbleHide: true });
-    this.t = setTimeout(() => {
-      this.showInactiveBubble();
-    }, 500);
+    this.t = setTimeout(this.showInactiveBubble, 500);
   };
   startGame = () => {
     this.setState({ start: true, record: initStateRecord, stage: 0 });
@@ -73,7 +71,7 @@ export default class ReflexGame extends Component {
     return (
       <>
         <h1 onClick={start ? this.endGame : this.startGame}>
-          {start ? "End" : "Start"}{" "}
+          {start ? "End" : "Start"}
         </h1>
         <div style={{ display: "flex" }}>
           <RecordList record={record} stage={stage} />
