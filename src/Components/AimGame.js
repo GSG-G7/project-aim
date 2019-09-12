@@ -30,7 +30,7 @@ export default class AimGame extends Component {
     }
   };
   incScore = id => {
-    this.setState({ score: this.state.score + 100 });
+    this.setState(({ score }) => ({ score: score + 100 }));
     this.hideBubble(id);
   };
   decScore = () => {
@@ -43,11 +43,11 @@ export default class AimGame extends Component {
   hideBubble = id => {
     const [first, second] = id.toString().split("");
     const coor = [+first, +second];
-    const newState = this.state.bubbles.filter(([first, second]) => {
+    const newBubbles = this.state.bubbles.filter(([first, second]) => {
       const [newFirst, newSecond] = coor;
       return !(newFirst === first && newSecond === second);
     });
-    this.setState({ bubbles: newState });
+    this.setState({ bubbles: newBubbles });
   };
   startGame = () => {
     this.setState({ start: true, score: 0 });
