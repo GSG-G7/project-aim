@@ -34,6 +34,8 @@ class App extends React.Component {
           {home ? (
             <>
               <div className="tab" id={"aim"} onClick={this.handleTabChange}>
+                <h2 id={"aim"}> Aim Game</h2>
+                <p> Hint : you need to pop all the bubbles appears </p>
                 <img
                   className="appImage"
                   src={
@@ -45,6 +47,11 @@ class App extends React.Component {
                 ></img>
               </div>
               <div className="tab" id={"reflex"} onClick={this.handleTabChange}>
+                <h2 id={"reflex"}> Reflex Game</h2>
+                <p>
+                  {" "}
+                  Hint : you must click on the bubble once it change it's color
+                </p>
                 <img
                   className="appImage"
                   src={
@@ -58,7 +65,7 @@ class App extends React.Component {
             </>
           ) : (
             <div
-              className="home-tab"
+              className="home-back"
               id={"home"}
               onClick={this.handleTabChange}
             >

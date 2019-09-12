@@ -2,10 +2,10 @@ import React from "react";
 import Bubble from "./Bubble";
 import "./Canvas.css";
 
-const createCanvas = (width, height) => {
-  const arr = new Array(width);
+const createCanvas = units => {
+  const arr = new Array(units);
   for (var i = 0; i < arr.length; i++) {
-    arr[i] = new Array(height).fill(0);
+    arr[i] = new Array(units).fill(0);
   }
   return arr;
 };
@@ -17,13 +17,21 @@ const combineBubblesIntoCanvas = (bubbles, canvas) => {
   return canvas;
 };
 
-export default ({ width, height, bubbles, bubbleOnClick, canvasOnClick }) => {
-  const canvas = combineBubblesIntoCanvas(bubbles, createCanvas(width, height));
+export default ({ units, bubbles, bubbleOnClick, canvasOnClick }) => {
+  const canvas = combineBubblesIntoCanvas(bubbles, createCanvas(units));
   return (
-    <div className="canvas" onClick={canvasOnClick}>
+    <div
+      className="canvas"
+      onClick={canvasOnClick}
+      // style={{
+      //   height: `${units * units * units * 0.5}px`,
+      //   width: `${units * units * units * 0.5}px`
+      // }}
+    >
       {canvas.map((e, i) =>
         e.map((e, j) => (
           <Bubble
+            units={units}
             className={`bubble ${e ? "bubble--inactive" : ""}`}
             onClick={
               e
