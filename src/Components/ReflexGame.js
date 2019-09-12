@@ -38,7 +38,7 @@ export default class ReflexGame extends Component {
     this.t = setTimeout(() => {
       const newRecord = this.cloneAddCurrentTime("activated");
       this.setState({ bubbleActive: true, record: newRecord });
-      this.t = setTimeout(this.popBubble, 1500);
+      this.t = setTimeout(this.popBubble, 1000);
     }, delay);
   };
   popBubble = () => {
