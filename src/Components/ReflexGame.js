@@ -38,7 +38,7 @@ export default class ReflexGame extends Component {
     this.t = setTimeout(() => {
       const newRecord = this.cloneAddCurrentTime("activated");
       this.setState({ bubbleActive: true, record: newRecord });
-      this.t = setTimeout(this.popBubble, 1500);
+      this.t = setTimeout(this.popBubble, 1000);
     }, delay);
   };
   popBubble = () => {
@@ -59,11 +59,11 @@ export default class ReflexGame extends Component {
   };
   startGame = () => {
     this.setState({ start: true, record: initStateRecord, stage: 0 });
-    this.showInactiveBubble();
+    this.t = setTimeout(this.showInactiveBubble, 0);
   };
   endGame = () => {
     clearTimeout(this.t);
-    // save record in local storage ...
+    // const bestGame = this.state
     this.setState({ start: false });
   };
   render() {
