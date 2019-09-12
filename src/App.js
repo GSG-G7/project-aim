@@ -35,7 +35,10 @@ class App extends React.Component {
             <>
               <div className="tab" id={"aim"} onClick={this.handleTabChange}>
                 <img
-                  src={"/"}
+                  className="appImage"
+                  src={
+                    "https://cdn0.iconfinder.com/data/icons/startup-and-new-business-3/24/target-512.png"
+                  }
                   alt={"aim game"}
                   id={"aim"}
                   onClick={this.handleTabChange}
@@ -43,7 +46,10 @@ class App extends React.Component {
               </div>
               <div className="tab" id={"reflex"} onClick={this.handleTabChange}>
                 <img
-                  src={"/"}
+                  className="appImage"
+                  src={
+                    "https://www.bluefangsolutions.com/wp-content/uploads/2015/01/Reflex.jpg"
+                  }
                   alt={"reflex game"}
                   id={"reflex"}
                   onClick={this.handleTabChange}
