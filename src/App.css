@@ -1,7 +1,7 @@
 .App {
   text-align: center;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
 }
 
@@ -14,4 +14,25 @@
   justify-content: center;
   font-size: calc(10px + 2vmin);
   color: white;
+}
+
+.appImage {
+  width: 200px;
+}
+
+.home-back {
+  background-color: gray;
+  font-size: 20px;
+  border: 2px blueviolet solid;
+  padding: 5px 30px;
+  border-radius: 5px;
+}
+.home-back:hover {
+  transform: scale(1.2);
+  color: wheat;
+  border-color: red;
+}
+
+h1 {
+  color: coral;
 }
