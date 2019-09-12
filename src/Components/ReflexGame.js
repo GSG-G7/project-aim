@@ -59,11 +59,11 @@ export default class ReflexGame extends Component {
   };
   startGame = () => {
     this.setState({ start: true, record: initStateRecord, stage: 0 });
-    this.showInactiveBubble();
+    this.t = setTimeout(this.showInactiveBubble, 0);
   };
   endGame = () => {
     clearTimeout(this.t);
-    // save record in local storage ...
+    // const bestGame = this.state
     this.setState({ start: false });
   };
   render() {
