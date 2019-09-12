@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import Canvas from "./Canvas";
 
+const units = 10;
 export default class AimGame extends Component {
   state = {
     start: false,
@@ -9,14 +10,32 @@ export default class AimGame extends Component {
     lives: 5
   };
   t = null;
+  secondsPassed = 0;
+  delay = 2000;
+  resetDelay = () => {
+    this.delay = 2000;
+  };
+  decDelay = () => {
+    setTimeout(() => {
+      this.secondsPassed += 1;
+      if (this.secondsPassed < 37) {
+        this.delay -= 50;
+        this.decDelay();
+      }
+    }, 1000);
+  };
   generateRandomCoordinates = () => {
-    const random = () => Math.floor(Math.random() * 10);
+    const random = () => Math.floor(Math.random() * units);
     return [random(), random()];
   };
 
   showBubble = () => {
     const newCoor = this.generateRandomCoordinates();
-    let i = this.state.bubbles.find(([first, second]) => {
+    const { bubbles } = this.state;
+    if (bubbles.length === units * units) {
+      return this.endGame();
+    }
+    let i = bubbles.find(([first, second]) => {
       const [newFirst, newSecond] = newCoor;
       return newFirst === first && newSecond === second;
     });
@@ -24,7 +43,7 @@ export default class AimGame extends Component {
       this.setState(({ bubbles }) => ({
         bubbles: [...bubbles, newCoor]
       }));
-      this.t = setTimeout(this.showBubble, 500);
+      this.t = setTimeout(this.showBubble, this.delay);
     } else {
       this.showBubble();
     }
@@ -36,10 +55,12 @@ export default class AimGame extends Component {
   };
   decScore = () => {
     if (this.state.lives === 1) this.endGame();
-    this.setState(({ score, lives }) => ({
-      score: score - 80,
-      lives: lives - 1
-    }));
+    if (this.state.start) {
+      this.setState(({ score, lives }) => ({
+        score: score - 80,
+        lives: lives - 1
+      }));
+    }
   };
   hideBubble = id => {
     const [first, second] = id.toString().split("");
@@ -51,6 +72,8 @@ export default class AimGame extends Component {
     this.setState({ bubbles: newBubbles });
   };
   startGame = () => {
+    this.resetDelay();
+    this.decDelay();
     this.setState({ start: true, score: 0 });
     this.t = setTimeout(this.showBubble, 500);
   };
@@ -58,7 +81,7 @@ export default class AimGame extends Component {
   endGame = () => {
     clearTimeout(this.t);
     // // save record in local storage ...
-    this.setState({ start: false, bubbles: [] });
+    this.setState({ start: false, bubbles: [], lives: 0 });
   };
   setBestScore = () => {
     if (this.getBestScore() < this.state.score)
@@ -68,6 +91,7 @@ export default class AimGame extends Component {
         0
       );
   };
+
   getBestScore = () => {
     const bestScore = localStorage.getItem("bestScore");
     return bestScore ? JSON.parse(bestScore) : "0";
@@ -85,8 +109,7 @@ export default class AimGame extends Component {
           {this.getBestScore()}
         </h1>
         <Canvas
-          width={10}
-          height={10}
+          units={units}
           bubbles={bubbles}
           bubbleOnClick={this.incScore}
           canvasOnClick={this.decScore}
