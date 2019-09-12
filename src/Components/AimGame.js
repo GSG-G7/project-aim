@@ -32,6 +32,7 @@ export default class AimGame extends Component {
   incScore = id => {
     this.setState(({ score }) => ({ score: score + 100 }));
     this.hideBubble(id);
+    this.setBestScore();
   };
   decScore = () => {
     if (this.state.lives === 1) this.endGame();
@@ -59,6 +60,19 @@ export default class AimGame extends Component {
     // // save record in local storage ...
     this.setState({ start: false, bubbles: [] });
   };
+  setBestScore = () => {
+    if (this.getBestScore() < this.state.score)
+      setTimeout(
+        () =>
+          localStorage.setItem("bestScore", JSON.stringify(this.state.score)),
+        0
+      );
+  };
+  getBestScore = () => {
+    const bestScore = localStorage.getItem("bestScore");
+    return bestScore ? JSON.parse(bestScore) : "0";
+  };
+
   render() {
     const { bubbles, start, score, lives } = this.state;
     return (
@@ -67,7 +81,8 @@ export default class AimGame extends Component {
           {start ? "End" : "Start"}
         </h1>
         <h1>
-          your score is : {score} lives: {lives}
+          your score is : {score} lives: {lives} best score :
+          {this.getBestScore()}
         </h1>
         <Canvas
           width={10}
